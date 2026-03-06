@@ -74,6 +74,27 @@ a{color:inherit;text-decoration:none}
 footer{background:var(--card2);border-top:1px solid var(--border);padding:40px 24px;text-align:center}
 .footer-logo{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:800;background:linear-gradient(135deg,#fee440,#bf5af2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
 .disclaimer{color:var(--muted);font-size:.75rem;margin-top:16px;max-width:600px;margin-left:auto;margin-right:auto}
+.ticker-wrap{background:#0d0d18;border-bottom:1px solid var(--border);padding:8px 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-block;animation:tickerScroll 30s linear infinite}
+@keyframes tickerScroll{0%{transform:translateX(100vw)}100%{transform:translateX(-100%)}}
+.ticker-item{display:inline-block;margin-right:40px;font-size:.78rem;font-weight:700}
+.t-up{color:#22c55e}.t-down{color:#ef4444}
+.faq-section{max-width:1100px;margin:0 auto;padding:48px 24px}
+.faq-item{border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden}
+.faq-q{width:100%;text-align:left;background:var(--card);border:none;color:var(--text);font-family:inherit;font-size:.95rem;font-weight:700;padding:18px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:.2s}
+.faq-q:hover{background:#222236}.faq-q .faq-arrow{color:var(--gold);transition:.3s;flex-shrink:0}
+.faq-q.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{display:none;padding:0 20px 18px;color:var(--muted);font-size:.88rem;line-height:1.7;background:var(--card)}
+.faq-a.open{display:block}
+.bonus-finder{background:linear-gradient(135deg,rgba(191,90,242,.08),rgba(254,228,64,.05));border:1px solid rgba(191,90,242,.3);border-radius:16px;padding:32px;margin:48px auto;max-width:1100px;margin-left:24px;margin-right:24px}
+.bonus-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
+.bonus-opt{background:var(--card);border:2px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;text-align:center;font-weight:700;transition:.2s}
+.bonus-opt:hover,.bonus-opt.selected{border-color:var(--gold);background:rgba(254,228,64,.08);color:var(--gold)}
+.bonus-result{margin-top:20px;background:var(--card);border:1px solid rgba(34,197,94,.3);border-radius:12px;padding:20px;display:none}
+.share-strip{background:var(--card2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 24px;text-align:center}
+.nl-form{display:flex;gap:8px;max-width:420px;margin:0 auto}
+.nl-input{flex:1;background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:8px;font-size:.88rem;font-family:inherit}
+.nl-btn{background:linear-gradient(135deg,#fee440,#f59e0b);color:#000;font-weight:800;border:none;padding:10px 18px;border-radius:8px;cursor:pointer;white-space:nowrap}
 .mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(18,18,26,.96);backdrop-filter:blur(12px);border-top:1px solid var(--border);z-index:200}
 .mobile-nav-inner{display:flex;justify-content:space-around;padding:8px 0 max(8px,env(safe-area-inset-bottom))}
 .m-nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);font-size:.65rem;font-weight:600;padding:4px 12px;text-decoration:none}
@@ -83,6 +104,18 @@ footer{background:var(--card2);border-top:1px solid var(--border);padding:40px 2
 </style>
 </head>
 <body>
+<div class="ticker-wrap"><div class="ticker-inner" id="casino-ticker">
+  <span class="ticker-item">BTC <span id="ct-btc">$95,200</span></span>
+  <span class="ticker-item">ETH <span id="ct-eth">$3,450</span></span>
+  <span class="ticker-item">SOL <span id="ct-sol">$185</span></span>
+  <span class="ticker-item">BNB <span id="ct-bnb">$620</span></span>
+  <span class="ticker-item t-up">🎰 Spunk.Bet — Play Free →</span>
+  <span class="ticker-item">BTC <span id="ct-btc2">$95,200</span></span>
+  <span class="ticker-item">ETH <span id="ct-eth2">$3,450</span></span>
+  <span class="ticker-item">SOL <span id="ct-sol2">$185</span></span>
+  <span class="ticker-item">BNB <span id="ct-bnb2">$620</span></span>
+  <span class="ticker-item t-up">🏆 Stake.com — World's #1 →</span>
+</div></div>
 <nav class="navbar">
   <div class="nav-inner">
     <a href="/" class="nav-logo">spunk.casino</a>
@@ -158,6 +191,39 @@ footer{background:var(--card2);border-top:1px solid var(--border);padding:40px 2
         <a href="https://kalshi.com/sign-up/?referral=6b723b42-d0c9-4421-9b4e-5af4b4c6c42c" target="_blank" rel="noopener sponsored" class="casino-cta">Trade Kalshi →</a>
       </div>
     </div>
+    <div class="casino-card">
+      <div class="casino-rank">#5</div>
+      <div class="casino-icon">🎲</div>
+      <div class="casino-info">
+        <div class="casino-header"><span class="casino-name">Rollbit</span><span class="casino-badge">Rising Star</span></div>
+        <div><span class="stars">★★★★☆</span><span class="casino-score">8.2/10 — Best NFT Casino</span></div>
+        <p class="casino-desc">Crypto casino with NFT integration, sports betting, and futures trading. Unique RLB token gives holders a share of casino profits. Fast payouts, 1,000+ games, provably fair.</p>
+        <div class="casino-perks"><span class="perk">🎮 1,000+ Games</span><span class="perk">📈 Token Rewards</span><span class="perk">⚡ Fast Payouts</span></div>
+        <a href="https://rollbit.com" target="_blank" rel="noopener sponsored" class="casino-cta">Play Rollbit →</a>
+      </div>
+    </div>
+    <div class="casino-card">
+      <div class="casino-rank">#6</div>
+      <div class="casino-icon">🦘</div>
+      <div class="casino-info">
+        <div class="casino-header"><span class="casino-name">Roobet</span><span class="casino-badge">Crypto Only</span></div>
+        <div><span class="stars">★★★★☆</span><span class="casino-score">8.0/10 — Best Originals</span></div>
+        <p class="casino-desc">Crypto-exclusive casino with unique original games, live sports betting, and an active community. Fast deposits and instant withdrawals in BTC, ETH, and LTC. No sign-up bonus needed — just play.</p>
+        <div class="casino-perks"><span class="perk">🎰 Original Games</span><span class="perk">⚡ Crypto Only</span><span class="perk">🌍 Global</span></div>
+        <a href="https://roobet.com" target="_blank" rel="noopener sponsored" class="casino-cta">Play Roobet →</a>
+      </div>
+    </div>
+    <div class="casino-card">
+      <div class="casino-rank">#7</div>
+      <div class="casino-icon">🎮</div>
+      <div class="casino-info">
+        <div class="casino-header"><span class="casino-name">BC.Game</span><span class="casino-badge">Best Bonuses</span></div>
+        <div><span class="stars">★★★★☆</span><span class="casino-score">7.9/10 — Most Crypto Options</span></div>
+        <p class="casino-desc">Accepts 100+ cryptocurrencies. Massive welcome bonuses up to 360% match. Daily lucky spins, rakeback, and a native BCG token that earns you a share of profits. Huge game library.</p>
+        <div class="casino-perks"><span class="perk">💰 360% Bonus</span><span class="perk">🪙 100+ Cryptos</span><span class="perk">🎁 Daily Spins</span></div>
+        <a href="https://bc.game" target="_blank" rel="noopener sponsored" class="casino-cta">Play BC.Game →</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -193,6 +259,46 @@ footer{background:var(--card2);border-top:1px solid var(--border);padding:40px 2
     </a>
   </div>
 </section>
+
+<!-- BONUS FINDER -->
+<div class="bonus-finder" id="bonus">
+  <div class="section-title" style="font-size:1.4rem">🎁 Bonus Finder — Find Your Perfect Casino</div>
+  <p style="color:var(--muted);font-size:.88rem;margin-bottom:8px">Tell us what you want. We'll match you to the best casino.</p>
+  <div class="bonus-grid">
+    <div class="bonus-opt" onclick="selectBonus(this,'free')">💯 100% Free — No Deposit</div>
+    <div class="bonus-opt" onclick="selectBonus(this,'big-bonus')">💰 Biggest Bonus</div>
+    <div class="bonus-opt" onclick="selectBonus(this,'privacy')">🔒 Maximum Privacy</div>
+    <div class="bonus-opt" onclick="selectBonus(this,'regulated')">✅ Fully Regulated</div>
+  </div>
+  <div class="bonus-result" id="bonus-result"></div>
+</div>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-title">❓ Crypto Casino FAQ</div>
+  <p style="color:var(--muted);font-size:.9rem;margin-bottom:24px">Everything you need to know before you play</p>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is crypto gambling legal? <span class="faq-arrow">▼</span></button><div class="faq-a">Legality depends on your country. In the US, most offshore crypto casinos operate in a gray area. Kalshi is CFTC-regulated and fully legal. Spunk.Bet uses Bitcoin Runes (not real money betting) and is free to play globally. Always check local laws.</div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What is the best crypto casino for beginners? <span class="faq-arrow">▼</span></button><div class="faq-a">Spunk.Bet is #1 for beginners — it's completely free. No deposit, no credit card, just claim 10,000 SPUNK runes and play. Winna.com is also excellent — free sweepstakes casino, legal in all 50 US states with real prizes.</div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How fast are crypto casino payouts? <span class="faq-arrow">▼</span></button><div class="faq-a">Most reputable crypto casinos (Stake, Rollbit, BC.Game, Roobet) process withdrawals in under 10 minutes. Bitcoin transactions confirm in ~10 minutes, Ethereum in ~1 minute. Far faster than traditional bank wire transfers (3-5 days).</div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do crypto casinos require KYC? <span class="faq-arrow">▼</span></button><div class="faq-a">Most crypto casinos have minimal KYC for small amounts, but may require ID verification for large withdrawals. Spunk.Bet requires zero KYC — it's completely anonymous and free. Always use a VPN for extra privacy.</div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What is a provably fair casino? <span class="faq-arrow">▼</span></button><div class="faq-a">Provably fair means you can mathematically verify every game result is random and hasn't been manipulated. Sites like Stake use cryptographic hashing so you can independently verify each bet outcome. It's transparent gambling you can actually trust.</div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How much can I win at a crypto casino? <span class="faq-arrow">▼</span></button><div class="faq-a">Winnings vary wildly. Slots can pay 1,000x-50,000x your bet. Sports betting depends on odds. Spunk.Bet offers ordinal NFT prizes worth real BTC. The key: set a budget, play responsibly, and treat it as entertainment — not an investment strategy.</div></div>
+</section>
+
+<!-- SHARE + NEWSLETTER -->
+<div class="share-strip">
+  <p style="font-weight:700;margin-bottom:12px">Share the #1 crypto casino guide</p>
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:20px">
+    <button onclick="shareCasino()" style="background:linear-gradient(135deg,#1da1f2,#0d8ecf);color:#fff;font-weight:700;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:.88rem">Share on X →</button>
+    <a href="https://spunk.bet" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#fee440,#f59e0b);color:#000;font-weight:800;padding:10px 20px;border-radius:8px;font-size:.88rem">Play Spunk.Bet Free →</a>
+  </div>
+  <p style="color:var(--muted);font-size:.82rem;margin-bottom:8px">Get weekly casino bonus alerts — no spam</p>
+  <div class="nl-form">
+    <input class="nl-input" id="casino-nl-email" type="email" placeholder="your@email.com">
+    <button class="nl-btn" onclick="subscribeCasinoNL()">Get Alerts</button>
+  </div>
+  <p id="casino-nl-msg" style="color:#22c55e;font-size:.8rem;margin-top:8px;display:none">You're in! Bonus alerts incoming.</p>
+</div>
 
 <section class="section" id="empire">
   <div class="section-title">🌐 SpunkArt Empire</div>
@@ -248,6 +354,59 @@ footer{background:var(--card2);border-top:1px solid var(--border);padding:40px 2
 <script>
 window.openTipModal=function(){document.getElementById('tip-modal').classList.add('active')};
 window.closeTip=function(){document.getElementById('tip-modal').classList.remove('active')};
+// Crypto ticker
+(function(){
+  var ids='bitcoin,ethereum,solana,binancecoin';
+  function updateTicker(){
+    fetch('https://api.coingecko.com/api/v3/simple/price?ids='+ids+'&vs_currencies=usd&include_24hr_change=true')
+      .then(r=>r.json()).then(d=>{
+        var fmt=function(n){return n>=1000?'$'+n.toLocaleString('en-US',{maximumFractionDigits:0}):'$'+n.toFixed(2)};
+        var fmtC=function(c){var s=c>=0?'t-up':'t-down';return '<span class="'+s+'">'+(c>=0?'+':'')+c.toFixed(1)+'%</span>'};
+        if(d.bitcoin){['ct-btc','ct-btc2'].forEach(id=>{var el=document.getElementById(id);if(el)el.innerHTML=fmt(d.bitcoin.usd)+' '+fmtC(d.bitcoin.usd_24h_change)});}
+        if(d.ethereum){['ct-eth','ct-eth2'].forEach(id=>{var el=document.getElementById(id);if(el)el.innerHTML=fmt(d.ethereum.usd)+' '+fmtC(d.ethereum.usd_24h_change)});}
+        if(d.solana){['ct-sol','ct-sol2'].forEach(id=>{var el=document.getElementById(id);if(el)el.innerHTML=fmt(d.solana.usd)+' '+fmtC(d.solana.usd_24h_change)});}
+        if(d.binancecoin){['ct-bnb','ct-bnb2'].forEach(id=>{var el=document.getElementById(id);if(el)el.innerHTML=fmt(d.binancecoin.usd)+' '+fmtC(d.binancecoin.usd_24h_change)});}
+      }).catch(function(){});
+  }
+  updateTicker();setInterval(updateTicker,10000);
+})();
+// FAQ
+window.toggleFaq=function(btn){
+  btn.classList.toggle('open');
+  var ans=btn.nextElementSibling;
+  ans.classList.toggle('open');
+};
+// Bonus finder
+var BONUS_MAP={
+  'free':'<strong>Best Pick: Spunk.Bet</strong> — 100% free. Claim 10,000 SPUNK runes daily. Zero deposit. Zero KYC. <a href="https://spunk.bet" target="_blank" style="color:var(--gold)">Play free now →</a>',
+  'big-bonus':'<strong>Best Pick: BC.Game</strong> — Up to 360% match bonus on first deposit. Daily lucky spins and rakeback on top. <a href="https://bc.game" target="_blank" style="color:var(--gold)">Claim bonus →</a>',
+  'privacy':'<strong>Best Pick: Roobet</strong> — Crypto-only, minimal KYC, no bank details needed. Pair with NordVPN for maximum anonymity. <a href="https://roobet.com" target="_blank" style="color:var(--gold)">Play privately →</a>',
+  'regulated':'<strong>Best Pick: Kalshi</strong> — CFTC-regulated US prediction markets. Fully legal, USD payouts, real events. <a href="https://kalshi.com/sign-up/?referral=6b723b42-d0c9-4421-9b4e-5af4b4c6c42c" target="_blank" style="color:var(--gold)">Trade now →</a>'
+};
+window.selectBonus=function(el,type){
+  document.querySelectorAll('.bonus-opt').forEach(function(o){o.classList.remove('selected')});
+  el.classList.add('selected');
+  var r=document.getElementById('bonus-result');
+  r.innerHTML=BONUS_MAP[type]||'';
+  r.style.display='block';
+};
+// Share
+window.shareCasino=function(){
+  var txt='Just found the #1 crypto casino guide — honest rankings, no deposit options, and free play at spunk.bet. Check it out: spunk.casino via @SpunkArt13';
+  window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(txt),'_blank');
+};
+// Newsletter
+window.subscribeCasinoNL=function(){
+  var em=document.getElementById('casino-nl-email');
+  if(!em||!em.value.includes('@'))return;
+  var key='casino_nl_'+em.value;
+  if(localStorage.getItem(key))return;
+  localStorage.setItem(key,'1');
+  fetch('https://predict-network-ec767-default-rtdb.firebaseio.com/casino_newsletter.json',{method:'POST',body:JSON.stringify({email:em.value,t:Date.now()}),headers:{'Content-Type':'application/json'}}).catch(function(){});
+  var msg=document.getElementById('casino-nl-msg');
+  if(msg)msg.style.display='block';
+  em.value='';
+};
 (function(){if(window._vtrInit)return;window._vtrInit=true;var DB='https://predict-network-ec767-default-rtdb.firebaseio.com';var site=(location.hostname||'local').replace(/\./g,'_').replace(/[#$\[\]]/g,'_');var sid='s'+Math.random().toString(36).slice(2)+Date.now().toString(36);var sRef=DB+'/vtr/'+site+'/s/'+sid+'.json';var allRef=DB+'/vtr/'+site+'/s.json';function ping(){fetch(sRef,{method:'PUT',body:JSON.stringify({t:Date.now()}),headers:{'Content-Type':'application/json'}}).catch(function(){})}function refresh(){fetch(allRef).then(r=>r.json()).then(d=>{var n=1;if(d&&typeof d==='object'){n=Math.max(1,Object.values(d).filter(v=>v&&v.t&&(Date.now()-v.t)<25000).length);}var el=document.getElementById('vtr-count');if(el)el.textContent=n+(n===1?' visitor':' visitors')+' online';}).catch(()=>{})}var day=new Date().toISOString().slice(0,10);fetch(DB+'/vtr/'+site+'/hits/'+day+'.json').then(r=>r.json()).then(n=>{fetch(DB+'/vtr/'+site+'/hits/'+day+'.json',{method:'PUT',body:JSON.stringify((n||0)+1),headers:{'Content-Type':'application/json'}}).catch(()=>{})}).catch(()=>{});window.addEventListener('pagehide',()=>fetch(sRef,{method:'DELETE',keepalive:true}).catch(()=>{}));ping();refresh();setInterval(()=>{ping();refresh();},10000);})();
 </script>
 </body>
