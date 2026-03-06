@@ -104,18 +104,7 @@ footer{background:var(--card2);border-top:1px solid var(--border);padding:40px 2
 </style>
 </head>
 <body>
-<div class="ticker-wrap"><div class="ticker-inner" id="casino-ticker">
-  <span class="ticker-item">BTC <span id="ct-btc">$95,200</span></span>
-  <span class="ticker-item">ETH <span id="ct-eth">$3,450</span></span>
-  <span class="ticker-item">SOL <span id="ct-sol">$185</span></span>
-  <span class="ticker-item">BNB <span id="ct-bnb">$620</span></span>
-  <span class="ticker-item t-up">🎰 Spunk.Bet — Play Free →</span>
-  <span class="ticker-item">BTC <span id="ct-btc2">$95,200</span></span>
-  <span class="ticker-item">ETH <span id="ct-eth2">$3,450</span></span>
-  <span class="ticker-item">SOL <span id="ct-sol2">$185</span></span>
-  <span class="ticker-item">BNB <span id="ct-bnb2">$620</span></span>
-  <span class="ticker-item t-up">🏆 Stake.com — World's #1 →</span>
-</div></div>
+<div class="ticker-wrap"><div class="ticker-inner" id="casino-ticker"><span class="ticker-item" style="color:#555">Loading prices...</span></div></div>
 <nav class="navbar">
   <div class="nav-inner">
     <a href="/" class="nav-logo">spunk.casino</a>
@@ -354,19 +343,32 @@ footer{background:var(--card2);border-top:1px solid var(--border);padding:40px 2
 <script>
 window.openTipModal=function(){document.getElementById('tip-modal').classList.add('active')};
 window.closeTip=function(){document.getElementById('tip-modal').classList.remove('active')};
-// Crypto ticker
+// Crypto ticker — top 10 coins, live every 10s
 (function(){
-  var ids='bitcoin,ethereum,solana,binancecoin';
+  var fmt=function(n){return n>=1000?'$'+n.toLocaleString('en-US',{maximumFractionDigits:0}):n>=1?'$'+n.toFixed(2):'$'+n.toFixed(4)};
+  var fmtC=function(c){var cls=c>=0?'t-up':'t-down';return '<span class="'+cls+'">'+(c>=0?'+':'')+c.toFixed(1)+'%</span>'};
+  var COINS=[
+    {id:'bitcoin',sym:'BTC'},{id:'ethereum',sym:'ETH'},{id:'solana',sym:'SOL'},
+    {id:'ripple',sym:'XRP'},{id:'binancecoin',sym:'BNB'},{id:'dogecoin',sym:'DOGE'},
+    {id:'cardano',sym:'ADA'},{id:'avalanche-2',sym:'AVAX'},{id:'chainlink',sym:'LINK'},
+    {id:'tron',sym:'TRX'}
+  ];
+  var ids=COINS.map(function(c){return c.id}).join(',');
+  function buildTicker(d){
+    var items=COINS.map(function(c){
+      var coin=d[c.id];
+      if(!coin)return '';
+      return '<span class="ticker-item">'+c.sym+' '+fmt(coin.usd)+' '+fmtC(coin.usd_24h_change)+'</span>';
+    }).join('');
+    var sep1='<span class="ticker-item t-up">🎰 Spunk.Bet — Play Free</span>';
+    var sep2='<span class="ticker-item t-up">🏆 Stake.com — World #1</span>';
+    var row=items+sep1+items+sep2;
+    var el=document.getElementById('casino-ticker');
+    if(el){el.innerHTML=row;el.style.animation='none';el.offsetHeight;el.style.animation='';}
+  }
   function updateTicker(){
     fetch('https://api.coingecko.com/api/v3/simple/price?ids='+ids+'&vs_currencies=usd&include_24hr_change=true')
-      .then(r=>r.json()).then(d=>{
-        var fmt=function(n){return n>=1000?'$'+n.toLocaleString('en-US',{maximumFractionDigits:0}):'$'+n.toFixed(2)};
-        var fmtC=function(c){var s=c>=0?'t-up':'t-down';return '<span class="'+s+'">'+(c>=0?'+':'')+c.toFixed(1)+'%</span>'};
-        if(d.bitcoin){['ct-btc','ct-btc2'].forEach(id=>{var el=document.getElementById(id);if(el)el.innerHTML=fmt(d.bitcoin.usd)+' '+fmtC(d.bitcoin.usd_24h_change)});}
-        if(d.ethereum){['ct-eth','ct-eth2'].forEach(id=>{var el=document.getElementById(id);if(el)el.innerHTML=fmt(d.ethereum.usd)+' '+fmtC(d.ethereum.usd_24h_change)});}
-        if(d.solana){['ct-sol','ct-sol2'].forEach(id=>{var el=document.getElementById(id);if(el)el.innerHTML=fmt(d.solana.usd)+' '+fmtC(d.solana.usd_24h_change)});}
-        if(d.binancecoin){['ct-bnb','ct-bnb2'].forEach(id=>{var el=document.getElementById(id);if(el)el.innerHTML=fmt(d.binancecoin.usd)+' '+fmtC(d.binancecoin.usd_24h_change)});}
-      }).catch(function(){});
+      .then(function(r){return r.json()}).then(buildTicker).catch(function(){});
   }
   updateTicker();setInterval(updateTicker,10000);
 })();
